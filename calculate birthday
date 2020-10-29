@@ -1,0 +1,41 @@
+package calculate.birthday;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+public class CalculateBirthday {
+
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Date dt = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+        String dateformate = sdf.format(dt);
+        String[] date = dateformate.split("/");
+        int day = Integer.parseInt(date[0]);
+        int month = Integer.parseInt(date[1]);
+        int year = Integer.parseInt(date[2]);
+        System.out.println("Enter the date of birth in this format dd/MM/YYYY");
+        Scanner sc = new Scanner(System.in);
+        String dateOfBirth = sc.next();
+        String[] myDate = dateOfBirth.split("/");
+        int myDay = Integer.parseInt(myDate[0]);
+        int myMonth = Integer.parseInt(myDate[1]);
+        int myYear = Integer.parseInt(myDate[2]);
+        int ageDay = day - myDay;
+        int ageMon = month - myMonth;
+        if (day < myDay) {
+            month -= 1;
+            ageMon -= 1;
+            int newday = day + 30;
+            ageDay = newday - myDay;
+        }
+        if (month < myMonth) {
+            year -= 1;
+            int newmonth = month + 12;
+            ageMon = newmonth - myMonth;
+        }
+        int ageYear = year - myYear;
+        String age = ageYear + " Years\n" + ageMon + " Months\n" + ageDay + " Days";
+        System.out.println(age);
+    }
+}
